@@ -19,11 +19,10 @@ def calculate_g():
         n = (r2 * math.sin(B))**2
         y = math.sqrt(m + n)
 
-        R = x / y
-        r = R * 1000
+        r = x / y
         G = 6.673e-11
         M = 5.97219e24
-        g = (G * M) / r**2
+        g = (G * M) / (r * 1000)**2
         print(f'The Gravitational Acceleration of the location is {g}')
 
     elif choice_calc_g == 'n':
@@ -262,86 +261,94 @@ def calculate_g_eqn_thrown():
 
 def main():
     print('Welcome to the Kinematic Calculator for Falling and Thrown Objects......!')
+    
+    while True:
 
-    print('''Choose your option:
-    1. Falling Object
-    2. Thrown Object''')
+        print('''Choose your option:
+        1. Falling Object
+        2. Thrown Object''')
 
-    choice = input("Enter your option's number: ")
+        choice = input("Enter your option's number: ")
 
-    if choice == '1':
+        if choice == '1':
 
-        print('''Choose your quantity to calculate:
-    1. Height(h)
-    2. Final Velocity
-    3. Gravitational Aceeleration
-    4. Time''')
+            print('''Choose your quantity to calculate:
+        1. Height(h)
+        2. Final Velocity
+        3. Gravitational Aceeleration
+        4. Time''')
 
-        choice_quan_fall = input(
-            "Enter the quantity's number you want to calculate: ")
+            choice_quan_fall = input(
+                "Enter the quantity's number you want to calculate: ")
 
-        if choice_quan_fall == '1':
-            calculate_h_falling_obj()
+            if choice_quan_fall == '1':
+                calculate_h_falling_obj()
 
-        elif choice_quan_fall == '2':
-            calculate_v_falling_obj()
+            elif choice_quan_fall == '2':
+                calculate_v_falling_obj()
 
-        elif choice_quan_fall == '4':
-            calculate_t_falling_obj()
+            elif choice_quan_fall == '4':
+                calculate_t_falling_obj()
 
-        elif choice_quan_fall == '3':
-            print('''Choose your option for calculate Gravitational Acceleration:
-    1. Calculate by latitude
-    2. Calculate by equation''')
+            elif choice_quan_fall == '3':
+                print('''Choose your option for calculate Gravitational Acceleration:
+        1. Calculate by latitude
+        2. Calculate by equation''')
 
-            choice_quan_g = input("Enter your option's number: ")
+                choice_quan_g = input("Enter your option's number: ")
 
-            if choice_quan_g == '1':
+                if choice_quan_g == '1':
+                    g = calculate_g()
+                    print(f'The Gravitational Accelertion is {g} m/s²')
+
+                elif choice_quan_g == '2':
+                    calculate_g_eqn_fall()
+
+        if choice == '2':
+            print('''Choose your quantity to calculate:
+        1. Initial Velocity
+        2. Height
+        3. Time
+        4. Soaring Time
+        5. Gravitational Acceleration''')
+
+            choice_quan_thrown = input(
+                "Enter the quantity's number you want to calculate: ")
+
+            if choice_quan_thrown == '1':
+                calculate_u_thrown()
+
+            elif choice_quan_thrown == '2':
+                calculate_h_thrown()
+
+            elif choice_quan_thrown == '3':
+                calculate_t_thrown()
+
+            elif choice_quan_thrown == '4':
                 g = calculate_g()
-                print(f'The Gravitational Accelertion is {g} m/s²')
+                u = float(input('Enter the Initial Velocity(u)(m/s): '))
+                t = (2 * u) / g
+                print(f'The Soaring Time of the object is {t} s')
 
-            elif choice_quan_g == '2':
-                calculate_g_eqn_fall()
+            elif choice_quan_thrown == '5':
+                print('''Choose your option for calculate Gravitational Acceleration:
+        1. Calculate by latitude
+        2. Calculate by equation''')
 
-    if choice == '2':
-        print('''Choose your quantity to calculate:
-    1. Initial Velocity
-    2. Height
-    3. Time
-    4. Soaring Time
-    5. Gravitational Acceleration''')
+                choice_quan_g = input("Enter your option's number: ")
 
-        choice_quan_thrown = input(
-            "Enter the quantity's number you want to calculate: ")
+                if choice_quan_g == '1':
+                    g = calculate_g()
+                    print(f'The Gravitational Accelertion is {g} m/s²')
 
-        if choice_quan_thrown == '1':
-            calculate_u_thrown()
-
-        elif choice_quan_thrown == '2':
-            calculate_h_thrown()
-
-        elif choice_quan_thrown == '3':
-            calculate_t_thrown()
-
-        elif choice_quan_thrown == '4':
-            g = calculate_g()
-            u = float(input('Enter the Initial Velocity(u)(m/s): '))
-            t = (2 * u) / g
-            print(f'The Soaring Time of the object is {t} s')
-
-        elif choice_quan_thrown == '5':
-            print('''Choose your option for calculate Gravitational Acceleration:
-    1. Calculate by latitude
-    2. Calculate by equation''')
-
-            choice_quan_g = input("Enter your option's number: ")
-
-            if choice_quan_g == '1':
-                g = calculate_g()
-                print(f'The Gravitational Accelertion is {g} m/s²')
-
-            elif choice_quan_g == '2':
-                calculate_g_eqn_thrown()
+                elif choice_quan_g == '2':
+                    calculate_g_eqn_thrown()
+                    
+        another_calculation = input('Do you want to perform another calculation? (y/n): ')
+        
+        if another_calculation != 'y':
+            print('Thank you for using Kinematic Calculator for Falling and Thrown Objects.....!')
+            break
 
 
 if __name__ == '__main__':
